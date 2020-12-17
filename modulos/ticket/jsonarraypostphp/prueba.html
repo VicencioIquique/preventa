@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="formulario/js/jquery-1.11.0.min.js"></script>
+<!-- INICIO Bootstrap -->
+<!-- CSS -->
+	<!-- BOOSTRAP -->
+<link href="formulario/css/bootstrap.css" rel="stylesheet">
+
+<!-- JAVASCRIPT -->
+	<!-- BOOSTRAP -->
+<script src="formulario/js/bootstrap.min.js"></script>
+
+<!-- FIN Boostrap -->
+<title>INICIO PRE VENTAS</title>
+
+<script>
+	$(document).ready(function(){
+		$("#boton").click(function(){
+		var id = '2'
+		var json = {
+			id:id
+		};
+			$.post('script/prueba.php', {prueba:json}, function(resPHP){
+				var respuesta = $.parseJSON(resPHP);
+				for(i=0;i<respuesta.length;i++){
+					alert(respuesta[i]['idDetalleFondoFijo']);
+				}
+				
+			});
+		});
+	});
+</script> 
+</head>
+
+<body>
+	<div class="row" style="margin-left:10px; margin-right:10px; margin-top:15px;"><!-- FIN DEL ROW -->
+		<div class="col-lg-4 col-lg-offset-4">
+		
+			
+				<!--<label for="exampleInputPassword1" style="margin-top:40px; color:white;">Credencial</label>--><br><br>
+				<button id="boton">Boton</button>
+			
+		</div>
+    </div>
+</body>
+</html>

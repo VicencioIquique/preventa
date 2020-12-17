@@ -1,0 +1,30 @@
+.barcode128h  {
+    clear: both;
+    padding: 0 0px /*quiet zone*/;
+	text-align:center;
+    overflow: auto;
+    height: 90px   /*size*/;
+}
+ 
+.barcode128h div {
+    /*float: left;*/
+    height: 120px  /*size*/;
+    display: inline;
+}
+ 
+.barcode128h label {
+    clear: both;
+    display: block;
+    text-align: center;
+    font: 120px/170% helvetica /*size*/;
+}
+ 
+.barcode128h .bar1 { border-left: 1px solid black }
+.barcode128h .bar2 { border-left: 2px solid black }
+.barcode128h .bar3 { border-left: 3px solid black }
+.barcode128h .bar4 { border-left: 4px solid black }
+.barcode128h .space0 { margin-right: 0px }
+.barcode128h .space1 { margin-right: 1px }
+.barcode128h .space2 { margin-right: 2px }
+.barcode128h .space3 { margin-right: 3px }
+.barcode128h .space4 { margin-right: 4px }

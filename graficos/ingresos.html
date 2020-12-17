@@ -1,0 +1,61 @@
+          
+        <script type="text/javascript">
+            var chart;
+
+            var chartData = [{
+                country: "CTNW",
+                visits: 20800,
+                color: "#0489B1"
+            }, {
+                country: "FREY",
+                visits: 13200,
+                color: "#0489B1"
+            }, {
+                country: "HBSS",
+                visits: 32500,
+                color: "#0489B1"
+            }, {
+                country: "RALP",
+                visits: 36300,
+                color: "#0489B1"
+            }];
+
+
+            AmCharts.ready(function () {
+                // SERIAL CHART
+                chart = new AmCharts.AmSerialChart();
+                chart.dataProvider = chartData;
+                chart.categoryField = "country";
+                chart.startDuration = 1;
+
+                // AXES
+                // category
+                var categoryAxis = chart.categoryAxis;
+                categoryAxis.labelRotation = 45; // this line makes category values to be rotated
+                categoryAxis.gridAlpha = 0;
+                categoryAxis.fillAlpha = 1;
+                categoryAxis.fillColor = "#FAFAFA";
+                categoryAxis.gridPosition = "start";
+
+                // value
+                var valueAxis = new AmCharts.ValueAxis();
+                valueAxis.dashLength = 5;
+                valueAxis.title = "Ventas Por Marca"
+                valueAxis.axisAlpha = 0;
+                chart.addValueAxis(valueAxis);
+
+                // GRAPH
+                var graph = new AmCharts.AmGraph();
+                graph.valueField = "visits";
+                graph.colorField = "color";
+                graph.balloonText = "[[category]]: [[value]]";
+                graph.type = "column";
+                graph.lineAlpha = 0;
+                graph.fillAlphas = 1;
+                chart.addGraph(graph);
+
+                // WRITE
+                chart.write("ingresos");
+            });
+        </script>
+   
