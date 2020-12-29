@@ -2,7 +2,6 @@
  	require_once("../../../../clases/conexionocdb.php");
 	session_start();
 	$formulario = $_POST['codPack'];
-	
 	$sqlPack_Arcitulos = "SELECT ALU FROM RP_VICENCIO.dbo.RP_Pack_Articulos WHERE codPack = '".$formulario[0]."'";
 	$rsPA = odbc_exec($conn, $sqlPack_Arcitulos);
 	if(!$rsPA){
@@ -12,15 +11,13 @@
 	while($resultado = odbc_fetch_array($rsPA)){
 		$res[] = $resultado['ALU'];
 	}
-	odbc_close( $conn );
 	
 	$sqlIP = "SELECT bodega FROM [RP_VICENCIO].dbo.RP_IP_BODEGAS WHERE ip = '".$_SERVER['REMOTE_ADDR']."'";
 	$rsIP = odbc_exec( $conn, $sqlIP );
 	if ( !$rsIP ){
-		exit( "Error en la consulta SQL IP" );
+		exit( "Error en la consulta SQL IP1" );
 	}
 	$resultadoBodega = odbc_fetch_array($rsIP);
-	odbc_close( $conn );
 	
 	$acum = 0;
 	for($i=0;$i<count($res);$i++){
@@ -33,14 +30,13 @@
 		if($resultadoLotes['Cantidad'] > 0){
 			$acum=$acum+1;
 		}
-		odbc_close( $conn );
 	}
 	
 	if(($acum == count($res))&&($acum != 0)){
 		$sqlPack = "SELECT codPack, descripcion, total, articulo FROM RP_VICENCIO.dbo.RP_Pack WHERE codPack = '".$formulario[0]."'";
 		$rs = odbc_exec($conn, $sqlPack);
 		if ( !$rs ){
-			exit( "Error en la consulta SQL IP" );
+			exit( "Error en la consulta SQL IP2" );
 		}
 		$resultado = odbc_fetch_array($rs);
 		$respuesta = array(

@@ -14,19 +14,18 @@
 		exit( "Error en la consulta SQL IP" );
 	}
 	$resultado = odbc_fetch_array($rs);
-	odbc_close( $conn );
 	
 	$sqlALU = "SELECT ALU FROM [RP_VICENCIO].[dbo].[RP_Articulos] WHERE ALU = '".$formulario[0]."'";
 	$rsALU = odbc_exec( $conn, $sqlALU );
 	if ( !$rsALU ){
-		exit( "Error en la consulta SQL" );
+		exit( "Error en la consulta SQL ARTICULOS" );
 	}
 	$resultadoALU = odbc_fetch_array($rsALU);
 	
 	$sql ="SELECT Cantidad FROM [RP_VICENCIO].dbo.LotesDisponibles WHERE ItemCode='".$resultadoALU['ALU']."' AND bodega='".$resultado['bodega']."'";
 	$rs = odbc_exec( $conn, $sql );
 	if ( !$rs ){
-		exit( "Error en la consulta SQL" );
+		exit( "Error en la consulta SQL LOTES" );
 	}
 	while($resultado = odbc_fetch_array($rs)){ 
 		$cantidad = number_format($resultado['Cantidad'],0,'','');

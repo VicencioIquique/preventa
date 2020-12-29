@@ -10,7 +10,6 @@
 		exit( "Error en la consulta SQL IP" );
 	}
 	$resultado = odbc_fetch_array($rs);
-	odbc_close( $conn );
 	
 	if($resultado['bodega'] == '000'){
 		$bodega = 'ZFI.2077';
