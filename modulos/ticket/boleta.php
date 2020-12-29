@@ -49,14 +49,12 @@ require_once("../../clases/conexionocdb.php");
 	if(!$rs){
 		exit( "Error en la consulta SQL CABECERA" );
 	}
-	odbc_close( $conn );
 	/*INSERCIÓN EN NUMERODOCTOPRUEBA SOLO POR FIN DE SEMANA PARA SEPARAR NUMERO DE DOCUMENTO DE RPRO*/
 	$sqlPruebaAumento = "INSERT INTO [RP_VICENCIO].[dbo].[NumeroDoctoPrueba] VALUES ('".$numeroDocto."')";
 	$ra = odbc_exec($conn, $sqlPruebaAumento);
 	if(!$rs){
 		exit("Error en la consulta aumento de prueba");
 	}
-	odbc_close($conn);
 	
 	/*FIN INSERCION NUMERODOCTOPRUEBA*/
 ?>
@@ -183,7 +181,6 @@ require_once("../../clases/conexionocdb.php");
 					while($resultado = odbc_fetch_array($rs)){ 
 						$CostoExt = $resultado['AvgPrice'];
 					}
-					odbc_close( $conn );
 					if($prods[$tam-1][4]<10){
 						$vendedor = '00'.$prods[$tam-1][4];
 					}else if($prods[$tam-1][4] >=10){
@@ -198,21 +195,18 @@ require_once("../../clases/conexionocdb.php");
 						if(!$rs){
 							exit( "Error en la consulta SQL DETALLE" );
 						}
-						odbc_close( $conn );
 					}else if((substr($prods[$i-1][1],0,3) == 999)||(substr($prods[$i-2][1],0,3) == 999)){
 						$sqldetalle="INSERT INTO [RP_VICENCIO].dbo.RP_ReceiptsDetPre_SAP VALUES('".$bodega."','".$tipoDocto."','".$numeroDocto."',".($i+1).", '".$prods[$i][1]."', ".$prods[$i][3].", ".$precioOriginal.", ".$descuento.", ".$precioFinal.", '".$vendedor."',0,0,".$precioExtendido.", 0, '".$workstation."', '".$idVenta."', ".floor($CostoExt).",1, ".$prods[$i][0].", '".$prods[$i][1]."', GETDATE(),'','10')";
 						$rs = odbc_exec( $conn, $sqldetalle );
 						if(!$rs){
 							exit( "Error en la consulta SQL DETALLE" );
 						}
-						odbc_close( $conn );
 					}else{
 						$sqldetalle="INSERT INTO [RP_VICENCIO].dbo.RP_ReceiptsDetPre_SAP VALUES('".$bodega."','".$tipoDocto."','".$numeroDocto."',".($i+1).", '".$prods[$i][1]."', ".$prods[$i][3].", ".$precioOriginal.", ".$descuento.", ".$precioFinal.", '".$vendedor."',0,0,".$precioExtendido.", 0, '".$workstation."', '".$idVenta."', ".floor($CostoExt).",1, ".$prods[$i][0].", '".$prods[$i][1]."', GETDATE(),'','')";					
 						$rs = odbc_exec( $conn, $sqldetalle );
 						if(!$rs){
 							exit( "Error en la consulta SQL DETALLE" );
 						}
-						odbc_close( $conn );
 					}
 				}
 			?>		
