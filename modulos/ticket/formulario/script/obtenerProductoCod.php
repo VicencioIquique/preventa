@@ -5,6 +5,7 @@
 	$sql="SELECT DESC2, DESC3, PRICE01, UPC, ALU, RecNumber FROM [RP_VICENCIO].[dbo].[RP_Articulos] WHERE ALU = '".$formulario[0]."' OR UPC='".$formulario[0]."'";
 
 	$rs = odbc_exec( $conn, $sql );
+	echo $sql;
 	if ( !$rs ){
 		exit( "Error en la consulta SQL" );
 	}
@@ -74,7 +75,7 @@
 				 "+", "}", "{", "¨", "´",
 				 ">", "< ", ";", ",", ":",
 				 ".", ""),
-			'',
+			'.',
 			$string
 		);
 	
