@@ -22,7 +22,7 @@
 	}
 	$resultadoALU = odbc_fetch_array($rsALU);
 	
-	$sql ="SELECT Cantidad FROM [RP_VICENCIO].dbo.LotesDisponibles WHERE ItemCode='".$resultadoALU['ALU']."' AND bodega='".$resultado['bodega']."'";
+	$sql ="SELECT sum(Cantidad) FROM [RP_VICENCIO].dbo.LotesDisponibles WHERE ItemCode='".$resultadoALU['ALU']."' AND bodega='".$resultado['bodega']."'";
 	$rs = odbc_exec( $conn, $sql );
 	if ( !$rs ){
 		exit( "Error en la consulta SQL LOTES" );

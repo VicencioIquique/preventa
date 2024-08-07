@@ -23,7 +23,8 @@
 	}
 	if($ip == null){
 		session_destroy();
-		echo "<script>location.href='../index.php';</script>";
+		// echo "<script>location.href='../index.php';</script>";
+		echo $resultado['ip'];
 	}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
